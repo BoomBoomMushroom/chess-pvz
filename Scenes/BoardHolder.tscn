@@ -1,0 +1,582 @@
+[gd_scene load_steps=3 format=3 uid="uid://8e0tmtvyvj78"]
+
+[ext_resource type="Script" path="res://Scripts/create_board_sprites.gd" id="1_4qxn7"]
+[ext_resource type="PackedScene" uid="uid://cn8jgp6r22lf3" path="res://Scenes/board_square.tscn" id="2_djr5v"]
+
+[node name="BoardHolder" type="Node2D"]
+script = ExtResource("1_4qxn7")
+
+[node name="BoardSquare" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_2" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(64, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_3" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(128, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_4" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(192, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_5" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(256, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_6" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(320, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_7" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(384, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_8" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(448, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_9" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(512, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_10" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(576, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_11" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(640, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_12" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(704, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_13" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(768, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_14" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(832, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_15" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(896, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_16" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(960, 0)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_17" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(0, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_18" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(64, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_19" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(128, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_20" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(192, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_21" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(256, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_22" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(320, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_23" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(384, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_24" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(448, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_25" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(512, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_26" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(576, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_27" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(640, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_28" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(704, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_29" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(768, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_30" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(832, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_31" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(896, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_32" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(960, 64)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_33" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_34" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(64, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_35" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(128, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_36" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(192, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_37" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(256, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_38" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(320, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_39" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(384, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_40" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(448, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_41" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(512, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_42" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(576, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_43" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(640, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_44" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(704, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_45" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(768, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_46" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(832, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_47" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(896, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_48" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(960, 128)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_49" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(0, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_50" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(64, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_51" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(128, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_52" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(192, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_53" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(256, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_54" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(320, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_55" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(384, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_56" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(448, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_57" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(512, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_58" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(576, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_59" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(640, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_60" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(704, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_61" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(768, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_62" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(832, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_63" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(896, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_64" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(960, 192)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_65" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_66" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(64, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_67" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(128, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_68" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(192, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_69" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(256, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_70" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(320, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_71" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(384, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_72" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(448, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_73" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(512, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_74" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(576, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_75" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(640, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_76" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(704, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_77" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(768, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_78" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(832, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_79" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(896, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_80" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(960, 256)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_81" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(0, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_82" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(64, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_83" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(128, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_84" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(192, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_85" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(256, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_86" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(320, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_87" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(384, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_88" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(448, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_89" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(512, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_90" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(576, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_91" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(640, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_92" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(704, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_93" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(768, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_94" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(832, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_95" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(896, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_96" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(960, 320)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_97" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_98" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(64, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_99" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(128, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_100" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(192, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_101" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(256, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_102" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(320, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_103" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(384, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_104" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(448, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_105" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(512, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_106" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(576, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_107" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(640, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_108" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(704, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_109" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(768, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_110" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(832, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_111" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(896, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_112" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(960, 384)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_113" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(0, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_114" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(64, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_115" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(128, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_116" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(192, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_117" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(256, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_118" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(320, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_119" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(384, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_120" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(448, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_121" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(512, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_122" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(576, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_123" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(640, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_124" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(704, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_125" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(768, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_126" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(832, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_127" parent="." instance=ExtResource("2_djr5v")]
+position = Vector2(896, 448)
+scale = Vector2(4, 4)
+
+[node name="_Sprite2D_128" parent="." instance=ExtResource("2_djr5v")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(960, 448)
+scale = Vector2(4, 4)

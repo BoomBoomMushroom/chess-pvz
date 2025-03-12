@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://caorfsjksvec2"]
+
+[ext_resource type="Texture2D" uid="uid://l4a4oj4t8yec" path="res://Sprites/cube.png" id="1_u68ou"]
+[ext_resource type="Texture2D" uid="uid://dsceqcdmbuacg" path="res://Sprites/ring-texture.png" id="2_n7hr1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0.86, 0.86, 0.86, 0.682353)
+texture = ExtResource("1_u68ou")
+
+[node name="CircleProgress" type="TextureProgressBar" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 792.0
+offset_bottom = 792.0
+scale = Vector2(0.02, 0.02)
+value = 67.0
+fill_mode = 4
+texture_under = ExtResource("2_n7hr1")
+texture_progress = ExtResource("2_n7hr1")
+tint_under = Color(0.47788, 0.47788, 0.47788, 1)
+tint_progress = Color(0.904646, 0.30283, 0.287614, 1)

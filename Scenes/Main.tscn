@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://h2scap1qo4n4"]
+
+[ext_resource type="PackedScene" uid="uid://8e0tmtvyvj78" path="res://Scenes/BoardHolder.tscn" id="1_sy3iw"]
+[ext_resource type="Script" path="res://Scripts/board_colorizer.gd" id="2_t3gmd"]
+[ext_resource type="Script" path="res://Scripts/piece_manager.gd" id="4_50mry"]
+[ext_resource type="Script" path="res://Scripts/dev_zombie_testing.gd" id="4_hc0t1"]
+[ext_resource type="PackedScene" uid="uid://cc7ccd8ludp7a" path="res://Scenes/zombie.tscn" id="5_ycmxv"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BoardHolder" parent="." instance=ExtResource("1_sy3iw")]
+unique_name_in_owner = true
+position = Vector2(-480, -224)
+script = ExtResource("2_t3gmd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PieceManager" type="Node2D" parent="."]
+script = ExtResource("4_50mry")
+
+[node name="DevZombieTesting" type="Node2D" parent="."]
+script = ExtResource("4_hc0t1")
+
+[node name="Zombie" parent="." instance=ExtResource("5_ycmxv")]
+modulate = Color(0.533333, 0.788235, 0.45098, 1)
+position = Vector2(492, -32)
+scale = Vector2(2, 2)

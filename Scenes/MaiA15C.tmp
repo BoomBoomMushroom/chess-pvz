@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://h2scap1qo4n4"]
+
+[ext_resource type="Script" path="res://Scripts/create_board_sprites.gd" id="1_ewppr"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BoardHolder" type="Node2D" parent="."]
+script = ExtResource("1_ewppr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(544, 292)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cml32xvkougjg"]
+
+[ext_resource type="Texture2D" uid="uid://sgvu4wjhmmac" path="res://Sprites/Pieces/wk.png" id="1_b04d1"]
+[ext_resource type="Texture2D" uid="uid://l4a4oj4t8yec" path="res://Sprites/cube.png" id="2_e4vvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajanu"]
+size = Vector2(301.176, 301.176)
+
+[node name="Piece" type="Sprite2D"]
+scale = Vector2(0.2125, 0.2125)
+texture = ExtResource("1_b04d1")
+
+[node name="PieceArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PieceArea"]
+position = Vector2(4.48788e-06, -2.24394e-06)
+shape = SubResource("RectangleShape2D_ajanu")
+debug_color = Color(0, 0.595, 0.7, 0)
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = -146.0
+offset_top = -146.0
+offset_right = 146.0
+offset_bottom = -122.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_e4vvc")
+texture_progress = ExtResource("2_e4vvc")
+tint_under = Color(0.56, 0.56, 0.56, 0.509804)
+tint_progress = Color(0.431667, 1, 0.38, 0.509804)

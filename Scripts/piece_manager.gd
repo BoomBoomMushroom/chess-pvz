@@ -8,12 +8,23 @@ var piecePrefab = preload("res://Scenes/piece.tscn")
 var cooldownPrefab = preload("res://Scenes/cooldown.tscn")
 @onready var boardHolder = %BoardHolder
 
+var zombies = {}
+
 var boardToWorldPosCache = {}
 var worldToBoardPosCache = {}
 
 var selectedSquare = Vector2(-1,-1)
 var coolDownPieces = {}
 var moveCooldown = 5
+
+var PIECE_VALUES = {
+	"k": 21, # All pieces combined 9 + 5 + 3 + 3 + 1
+	"q": 9,
+	"r": 5,
+	"n": 3,
+	"b": 3,
+	"p": 1,
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,10 +53,12 @@ func _process(delta: float) -> void:
 	
 	for key in coolDownPieces.keys():
 		coolDownPieces[key]["time"] -= delta # run down the cooldown time
-		coolDownPieces[key]["object"].get_node("CircleProgress").value = (
-			coolDownPieces[key]["time"] / coolDownPieces[key]["maxTime"]) * 100
 		
-		if coolDownPieces[key]["time"] <= 0:
+		coolDownPieces[key]["object"].get_node("CircleProgress").value = coolDownPieces[key]["time"]
+		coolDownPieces[key]["object"].get_node("CircleProgress").max_value = coolDownPieces[key]["maxTime"]
+		
+		var pieceOnCooldown = CalculateMoves.getPieceAt(key, pieces)
+		if coolDownPieces[key]["time"] <= 0 or pieceOnCooldown == null:
 			coolDownPieces[key]["object"].queue_free()
 			coolDownPieces.erase(key)
 	
@@ -83,12 +96,15 @@ func squareClicked(square):
 	
 	# Make a move
 	if selectedSquare != Vector2(-1, -1):
-		var selectedMoves = CalculateMoves.CalculateMoves(selectedSquare, pieces)
+		var selectedMoves = CalculateMoves.CalculateMoves(selectedSquare, pieces, zombies)
 		if boardPos in selectedMoves:
 			for piece in pieces:
 				if piece["Position"] == selectedSquare:
 					piece["Position"] = boardPos
 					piece["HasMoved"] = true
+					
+					# TODO: Check to see it we hit zombies and if so kill them!
+					# Make the zombies have a dead property so we can do animations?
 					
 					makeBoardCooldown(boardPos)
 					doKingCastleMoveRookCheck(piece, boardPos)
@@ -97,7 +113,7 @@ func squareClicked(square):
 					return deselectSquare()
 	
 	selectedSquare = boardPos
-	var realMoves = CalculateMoves.CalculateMoves(boardPos, pieces)
+	var realMoves = CalculateMoves.CalculateMoves(boardPos, pieces, zombies)
 	if realMoves == null:
 		deselectSquare()
 		return
@@ -107,7 +123,7 @@ func squareClicked(square):
 
 func doKingCastleMoveRookCheck(piece, boardPos):
 	var pieceType = piece["PieceType"]
-	if pieceType in ["k", "r"]: piece["CanCastle"] = false
+	if pieceType in ["k", "r"]: piece["HasMoved"] = true
 	if pieceType == "k":
 		if boardPos == Vector2(0, 2): # Long Castle
 			for findRook in pieces:
@@ -130,10 +146,13 @@ func updateHighligthedSquares(squares):
 		child.setHighlighted(toBeHighlighted)
 
 func createPiece(type="p", pos=Vector2(0,0)):
+	var maxHealth = 100
+	maxHealth = PIECE_VALUES[type] * 3
+	
 	return {
 		"Position": pos, "PieceType": type, "Object": null,
-		"HasMoved": false, "CanCastle": true,
-		"MaxHealth": 100, "Health": 100,
+		"HasMoved": false,
+		"MaxHealth": maxHealth, "Health": maxHealth,
 	}
 
 func startPiecePositions():
@@ -179,4 +198,20 @@ func boardToWorldPosition(boardPosition) -> Vector2:
 	
 	return Vector2(0,0)
 
-var pieceTakeDamage
+func pieceTakeDamage(pieceWorldPosition, damage):
+	pieceWorldPosition -= boardHolder.position # Get true world pos, account for being a child
+	
+	var boardPos = worldToBoardPosCache[pieceWorldPosition]
+	for i in range(0, len(pieces)):
+		var piece = pieces[i]
+		if piece["Position"] != boardPos: continue
+		piece["Health"] -= damage
+		if piece["Health"] <= 0:
+			piece["Object"].queue_free()
+			pieces.remove_at(i)
+		
+		piece["Object"].get_node("HealthBar").value = piece["Health"]
+		
+		# we are posibly modifying a list as we go, break out when needed.
+		# Also we already found what we need, so we can safely exit
+		break

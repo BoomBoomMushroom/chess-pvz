@@ -15,6 +15,7 @@ offset_top = -8.0
 offset_right = 792.0
 offset_bottom = 792.0
 scale = Vector2(0.02, 0.02)
+step = 0.0
 value = 67.0
 fill_mode = 4
 texture_under = ExtResource("2_n7hr1")

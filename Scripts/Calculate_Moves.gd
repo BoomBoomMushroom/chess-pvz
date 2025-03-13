@@ -1,6 +1,6 @@
 extends Node
 
-func CalculateMoves(boardPos, pieces):
+func CalculateMoves(boardPos, pieces, zombies):
 	var pieceToMove = null
 	for piece in pieces:
 		if piece["Position"] == boardPos: pieceToMove = piece
@@ -18,11 +18,11 @@ func CalculateMoves(boardPos, pieces):
 		var attackUp = boardPos + Vector2(1, -1)
 		var attackDown = boardPos + Vector2(1, 1)
 		
-		if checkSquareOccupants(ahead, pieces) == null: possibleMoves.append(ahead)
-		if checkSquareOccupants(attackUp, pieces) == "Zombie": possibleMoves.append(attackUp)
-		if checkSquareOccupants(attackDown, pieces) == "Zombie": possibleMoves.append(attackDown)
+		if checkSquareOccupants(ahead, pieces, zombies) == null: possibleMoves.append(ahead)
+		if checkSquareOccupants(attackUp, pieces, zombies) == "Zombie": possibleMoves.append(attackUp)
+		if checkSquareOccupants(attackDown, pieces, zombies) == "Zombie": possibleMoves.append(attackDown)
 		if pieceToMove["HasMoved"] == false:
-			if checkSquareOccupants(ahead2, pieces) == null: possibleMoves.append(ahead2)
+			if checkSquareOccupants(ahead2, pieces, zombies) == null: possibleMoves.append(ahead2)
 		
 	elif pieceType == "n":
 		var a = boardPos + Vector2(-1, 2) # down 2 left 1
@@ -33,14 +33,14 @@ func CalculateMoves(boardPos, pieces):
 		var f = boardPos + Vector2(1, -2) # up 2 right 1
 		var g = boardPos + Vector2(-2, 1) # down 1 left 2
 		var h = boardPos + Vector2(2, 1) # down 1 right 2
-		var aResult = checkSquareOccupants(a, pieces)
-		var bResult = checkSquareOccupants(b, pieces)
-		var cResult = checkSquareOccupants(c, pieces)
-		var dResult = checkSquareOccupants(d, pieces)
-		var eResult = checkSquareOccupants(e, pieces)
-		var fResult = checkSquareOccupants(f, pieces)
-		var gResult = checkSquareOccupants(g, pieces)
-		var hResult = checkSquareOccupants(h, pieces)
+		var aResult = checkSquareOccupants(a, pieces, zombies)
+		var bResult = checkSquareOccupants(b, pieces, zombies)
+		var cResult = checkSquareOccupants(c, pieces, zombies)
+		var dResult = checkSquareOccupants(d, pieces, zombies)
+		var eResult = checkSquareOccupants(e, pieces, zombies)
+		var fResult = checkSquareOccupants(f, pieces, zombies)
+		var gResult = checkSquareOccupants(g, pieces, zombies)
+		var hResult = checkSquareOccupants(h, pieces, zombies)
 		if aResult == null or aResult == "Zombie": possibleMoves.append(a)
 		if bResult == null or bResult == "Zombie": possibleMoves.append(b)
 		if cResult == null or cResult == "Zombie": possibleMoves.append(c)
@@ -50,12 +50,12 @@ func CalculateMoves(boardPos, pieces):
 		if gResult == null or gResult == "Zombie": possibleMoves.append(g)
 		if hResult == null or hResult == "Zombie": possibleMoves.append(h)
 	elif pieceType == "r":
-		var rookMoves = getRookMoves(boardPos, pieces)
+		var rookMoves = getRookMoves(boardPos, pieces, zombies)
 		for move in rookMoves:
 			possibleMoves.append(move)
 	elif pieceType == "b":
-		var bushopMoves = getBishopMoves(boardPos, pieces)
-		for move in bushopMoves:
+		var bishopMoves = getBishopMoves(boardPos, pieces, zombies)
+		for move in bishopMoves:
 			possibleMoves.append(move)
 	elif pieceType == "k":
 		var nw = boardPos + Vector2(-1, -1)
@@ -67,57 +67,57 @@ func CalculateMoves(boardPos, pieces):
 		var sw = boardPos + Vector2(-1, 1)
 		var w = boardPos + Vector2(-1, 0)
 		
-		if boardPos == Vector2(0, 4) and pieceToMove["CanCastle"] == true:
+		if boardPos == Vector2(0, 4) and pieceToMove["HasMoved"] == false:
 			var longCastleRookPos = Vector2(0, 0)
 			var shortCastleRookPos = Vector2(0, 7)
 			
 			var canLongCastle = (
-				checkSquareOccupants(Vector2(0, 3), pieces) == null and
-				checkSquareOccupants(Vector2(0, 2), pieces) == null and
-				checkSquareOccupants(Vector2(0, 1), pieces) == null and
+				checkSquareOccupants(Vector2(0, 3), pieces, zombies) == null and
+				checkSquareOccupants(Vector2(0, 2), pieces, zombies) == null and
+				checkSquareOccupants(Vector2(0, 1), pieces, zombies) == null and
 				getPieceTypeAt(longCastleRookPos, pieces) == "r")
 			var canShortCastle = (
-				checkSquareOccupants(Vector2(0, 5), pieces) == null and
-				checkSquareOccupants(Vector2(0, 6), pieces) == null and
+				checkSquareOccupants(Vector2(0, 5), pieces, zombies) == null and
+				checkSquareOccupants(Vector2(0, 6), pieces, zombies) == null and
 				getPieceTypeAt(shortCastleRookPos, pieces) == "r")
 			
-			if canLongCastle and getPieceAt(longCastleRookPos, pieces)["CanCastle"]:
+			if canLongCastle and getPieceAt(longCastleRookPos, pieces)["HasMoved"] == false:
 				possibleMoves.append(Vector2(0, 2))
 			
-			if canShortCastle and getPieceAt(shortCastleRookPos, pieces)["CanCastle"]:
+			if canShortCastle and getPieceAt(shortCastleRookPos, pieces)["HasMoved"] == false:
 				possibleMoves.append(Vector2(0, 6))
 		
 		
-		var nwResult = checkSquareOccupants(nw, pieces)
+		var nwResult = checkSquareOccupants(nw, pieces, zombies)
 		if nwResult == null or nwResult == "Zombie": possibleMoves.append(nw)
 		
-		var nResult = checkSquareOccupants(n, pieces)
+		var nResult = checkSquareOccupants(n, pieces, zombies)
 		if nResult == null or nResult == "Zombie": possibleMoves.append(n)
 		
-		var neResult = checkSquareOccupants(ne, pieces)
+		var neResult = checkSquareOccupants(ne, pieces, zombies)
 		if neResult == null or neResult == "Zombie": possibleMoves.append(ne)
 		
-		var eResult = checkSquareOccupants(e, pieces)
+		var eResult = checkSquareOccupants(e, pieces, zombies)
 		if eResult == null or eResult == "Zombie": possibleMoves.append(e)
 		
-		var seResult = checkSquareOccupants(se, pieces)
+		var seResult = checkSquareOccupants(se, pieces, zombies)
 		if seResult == null or seResult == "Zombie": possibleMoves.append(se)
 		
-		var sResult = checkSquareOccupants(s, pieces)
+		var sResult = checkSquareOccupants(s, pieces, zombies)
 		if sResult == null or sResult == "Zombie": possibleMoves.append(s)
 		
-		var swResult = checkSquareOccupants(sw, pieces)
+		var swResult = checkSquareOccupants(sw, pieces, zombies)
 		if swResult == null or swResult == "Zombie": possibleMoves.append(sw)
 		
-		var wResult = checkSquareOccupants(w, pieces)
+		var wResult = checkSquareOccupants(w, pieces, zombies)
 		if wResult == null or wResult == "Zombie": possibleMoves.append(w)
 	elif pieceType == "q":
 		# Combine Rook and Bishop moves for the queen
-		var rookMoves = getRookMoves(boardPos, pieces)
+		var rookMoves = getRookMoves(boardPos, pieces, zombies)
 		for move in rookMoves:
 			possibleMoves.append(move)
 			
-		var bishopMoves = getBishopMoves(boardPos, pieces)
+		var bishopMoves = getBishopMoves(boardPos, pieces, zombies)
 		for move in bishopMoves:
 			possibleMoves.append(move)
 	
@@ -133,14 +133,18 @@ func isPosOnBoard(boardPos) -> bool:
 	
 	return true
 
-func checkSquareOccupants(boardPos, pieces):
+func checkSquareOccupants(boardPos, pieces, zombies):
 	var occupants = null
 	for piece in pieces:
 		if piece["Position"] == boardPos:
 			occupants = "Piece"
 			break
 	
-	# TODO: Add check for zombies "Zombie"
+	for zombie in zombies.values():
+		if occupants != null: break # Have "Piece" take priority (we don't want to take our own piece)
+		if zombie.currentTile == boardPos:
+			occupants = "Zombie"
+			break
 	
 	return occupants
 
@@ -156,7 +160,7 @@ func getPieceAt(boardPos, pieces):
 	
 	return null
 
-func getRookMoves(boardPos, pieces):
+func getRookMoves(boardPos, pieces, zombies):
 	var possibleMoves = []
 	var offset = 1
 	var doUp = true
@@ -169,10 +173,10 @@ func getRookMoves(boardPos, pieces):
 		var down = boardPos + Vector2(0, offset)
 		var left = boardPos + Vector2(-offset, 0)
 		var right = boardPos + Vector2(offset, 0)
-		var upResult = checkSquareOccupants(up, pieces)
-		var downResult = checkSquareOccupants(down, pieces)
-		var leftResult = checkSquareOccupants(left, pieces)
-		var rightResult = checkSquareOccupants(right, pieces)
+		var upResult = checkSquareOccupants(up, pieces, zombies)
+		var downResult = checkSquareOccupants(down, pieces, zombies)
+		var leftResult = checkSquareOccupants(left, pieces, zombies)
+		var rightResult = checkSquareOccupants(right, pieces, zombies)
 		
 		if doUp: doUp = isPosOnBoard(up)
 		if doDown: doDown = isPosOnBoard(down)
@@ -198,7 +202,7 @@ func getRookMoves(boardPos, pieces):
 	
 	return possibleMoves
 
-func getBishopMoves(boardPos, pieces):
+func getBishopMoves(boardPos, pieces, zombies):
 	var possibleMoves = []
 	var offset = 1
 	var doUpLeft = true
@@ -211,10 +215,10 @@ func getBishopMoves(boardPos, pieces):
 		var upRight = boardPos + Vector2(offset, -offset)
 		var downLeft = boardPos + Vector2(-offset, offset)
 		var downRight = boardPos + Vector2(offset, offset)
-		var upLeftResult = checkSquareOccupants(upLeft, pieces)
-		var upRightResult = checkSquareOccupants(upRight, pieces)
-		var downLeftResult = checkSquareOccupants(downLeft, pieces)
-		var downRightResult = checkSquareOccupants(downRight, pieces)
+		var upLeftResult = checkSquareOccupants(upLeft, pieces, zombies)
+		var upRightResult = checkSquareOccupants(upRight, pieces, zombies)
+		var downLeftResult = checkSquareOccupants(downLeft, pieces, zombies)
+		var downRightResult = checkSquareOccupants(downRight, pieces, zombies)
 		
 		if doUpLeft: doUpLeft = isPosOnBoard(upLeft)
 		if doUpRight: doUpRight = isPosOnBoard(upRight)

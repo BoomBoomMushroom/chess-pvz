@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 CalculateMoves="*res://Scripts/Calculate_Moves.gd"
+Globals="*res://Scripts/Globals.gd"

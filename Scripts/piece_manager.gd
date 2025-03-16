@@ -8,6 +8,7 @@ var piecePrefab = preload("res://Scenes/piece.tscn")
 var cooldownPrefab = preload("res://Scenes/cooldown.tscn")
 @onready var boardHolder = %BoardHolder
 
+var pawnPromoteTo = "q"
 var zombies = {}
 
 var boardToWorldPosCache = {}
@@ -15,7 +16,7 @@ var worldToBoardPosCache = {}
 
 var selectedSquare = Vector2(-1,-1)
 var coolDownPieces = {}
-var moveCooldown = 5
+var moveCooldown = 0 # 5 seems good
 
 var PIECE_VALUES = {
 	"k": 21, # All pieces combined 9 + 5 + 3 + 3 + 1
@@ -37,7 +38,7 @@ func _ready() -> void:
 		worldToBoardPosCache[childRelativeWorldPos] = childBoardPos
 		
 		if child.has_signal("boardSquareClicked"):
-			child.connect("boardSquareClicked", squareClicked)
+			child.connect("boardSquareClicked", physicalSquareClicked)
 	
 	startPiecePositions()
 	updatePiecesPosition()
@@ -85,14 +86,21 @@ func makeBoardCooldown(boardPos):
 		"object": cooldownObj
 	}
 
-func squareClicked(square):
+func physicalSquareClicked(square):
 	var boardPos = worldToBoardPosCache[square.position]
-	
+	var clickedResult = squareClicked(boardPos)
+	if clickedResult:
+		square.setHighlighted(true)
+	return clickedResult
+
+func squareClicked(boardPos):
 	if boardPos == selectedSquare:
-		return deselectSquare()
+		deselectSquare()
+		return false
 	
 	if boardPos in coolDownPieces.keys():
-		return deselectSquare()
+		deselectSquare()
+		return false
 	
 	# Make a move
 	if selectedSquare != Vector2(-1, -1):
@@ -103,23 +111,29 @@ func squareClicked(square):
 					piece["Position"] = boardPos
 					piece["HasMoved"] = true
 					
-					# TODO: Check to see it we hit zombies and if so kill them!
-					# Make the zombies have a dead property so we can do animations?
+					if boardPos.x == Globals.boardWidth-1 and piece["PieceType"] == "p":
+						piece["PieceType"] = pawnPromoteTo
+						piece["TextureUpdate"] = true
+					
+					for zombie in zombies.values():
+						if zombie.currentTile == boardPos:
+							zombie.kill()
 					
 					makeBoardCooldown(boardPos)
 					doKingCastleMoveRookCheck(piece, boardPos)
 					
 					updatePiecesPosition()
-					return deselectSquare()
+					deselectSquare()
+					return false
 	
 	selectedSquare = boardPos
 	var realMoves = CalculateMoves.CalculateMoves(boardPos, pieces, zombies)
 	if realMoves == null:
 		deselectSquare()
-		return
+		return false
 	
-	square.setHighlighted(true)
 	updateHighligthedSquares(realMoves)
+	return true
 
 func doKingCastleMoveRookCheck(piece, boardPos):
 	var pieceType = piece["PieceType"]
@@ -151,7 +165,7 @@ func createPiece(type="p", pos=Vector2(0,0)):
 	
 	return {
 		"Position": pos, "PieceType": type, "Object": null,
-		"HasMoved": false,
+		"HasMoved": false, "TextureUpdate": false,
 		"MaxHealth": maxHealth, "Health": maxHealth,
 	}
 
@@ -190,6 +204,11 @@ func updatePiecesPosition():
 			add_child(pieceObject)
 			piece["Object"] = pieceObject
 		
+		if piece["TextureUpdate"] == true:
+			piece["TextureUpdate"] = false
+			var texturePath = pieceRoute + color + piece["PieceType"] + ".png"
+			piece["Object"].set_texture(load(texturePath))
+		
 		piece["Object"].position = boardToWorldPosition(piece["Position"])
 
 func boardToWorldPosition(boardPosition) -> Vector2:
@@ -209,6 +228,9 @@ func pieceTakeDamage(pieceWorldPosition, damage):
 		if piece["Health"] <= 0:
 			piece["Object"].queue_free()
 			pieces.remove_at(i)
+			if piece["Position"] == selectedSquare:
+				selectedSquare = Vector2(-1, -1)
+				squareClicked(piece["Position"])
 		
 		piece["Object"].get_node("HealthBar").value = piece["Health"]
 		

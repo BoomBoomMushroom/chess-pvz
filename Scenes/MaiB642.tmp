@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://h2scap1qo4n4"]
+[gd_scene load_steps=14 format=3 uid="uid://h2scap1qo4n4"]
 
 [ext_resource type="PackedScene" uid="uid://8e0tmtvyvj78" path="res://Scenes/BoardHolder.tscn" id="1_sy3iw"]
 [ext_resource type="Script" path="res://Scripts/board_colorizer.gd" id="2_t3gmd"]
 [ext_resource type="Script" path="res://Scripts/piece_manager.gd" id="4_50mry"]
 [ext_resource type="Script" path="res://Scripts/dev_zombie_testing.gd" id="4_hc0t1"]
+[ext_resource type="PackedScene" uid="uid://cc7ccd8ludp7a" path="res://Scenes/zombie.tscn" id="5_ycmxv"]
 [ext_resource type="Texture2D" uid="uid://cfhrvoilevxcq" path="res://Sprites/Pieces/wq.png" id="6_kim2g"]
 [ext_resource type="Script" path="res://Scripts/promote_ui_handler.gd" id="6_n1ram"]
 [ext_resource type="Texture2D" uid="uid://dta3jhs7tmck7" path="res://Sprites/Pieces/wr.png" id="7_7qoh4"]
@@ -15,7 +16,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmfpa"]
 size = Vector2(260, 260)
 
-[node name="Main" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 
 [node name="BoardHolder" parent="." instance=ExtResource("1_sy3iw")]
 unique_name_in_owner = true
@@ -30,6 +31,11 @@ script = ExtResource("4_50mry")
 
 [node name="DevZombieTesting" type="Node2D" parent="."]
 script = ExtResource("4_hc0t1")
+
+[node name="Zombie" parent="." instance=ExtResource("5_ycmxv")]
+modulate = Color(0.533333, 0.788235, 0.45098, 1)
+position = Vector2(492, -32)
+scale = Vector2(2, 2)
 
 [node name="PromoteUIHandler" type="Node2D" parent="."]
 script = ExtResource("6_n1ram")
@@ -103,6 +109,7 @@ scale = Vector2(16, 16)
 texture = ExtResource("8_rlyhm")
 
 [node name="ZombieWaveSpawner" type="Node2D" parent="."]
+position = Vector2(492, -32)
 scale = Vector2(2, 2)
 script = ExtResource("12_7dnc4")
 

@@ -128,8 +128,8 @@ func CalculateMoves(boardPos, pieces, zombies):
 func isPosOnBoard(boardPos) -> bool:
 	if boardPos.x < 0 or boardPos.y < 0: return false
 	# TODO: Make these global vars or remember to update this if I want to change board size?
-	if boardPos.y >= 8: return false
-	if boardPos.x >= 16: return false
+	if boardPos.y >= Globals.boardHeight: return false
+	if boardPos.x >= Globals.boardWidth: return false
 	
 	return true
 

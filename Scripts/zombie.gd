@@ -13,6 +13,7 @@ var isDead = false
 var removeTime = INF
 
 var random = RandomNumberGenerator.new()
+@onready var body: Sprite2D = $Body
 
 func setupZombie(setSpeed=0, setDamage=0, setEatCooldown=0, setHealth=0):
 	speed = setSpeed
@@ -53,6 +54,7 @@ func kill():
 	isDead = true
 	removeTime = 2 # in seconds
 	# Do other stuff like play animations and destroy object
+	body.modulate = Color8(255, 71, 71, 255)
 
 func eatProcess(delta):
 	eatCooldown -= Vector2(delta, 0)

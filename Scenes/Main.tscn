@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://h2scap1qo4n4"]
+[gd_scene load_steps=18 format=3 uid="uid://h2scap1qo4n4"]
 
 [ext_resource type="PackedScene" uid="uid://8e0tmtvyvj78" path="res://Scenes/BoardHolder.tscn" id="1_sy3iw"]
 [ext_resource type="Script" path="res://Scripts/board_colorizer.gd" id="2_t3gmd"]
@@ -11,9 +11,18 @@
 [ext_resource type="Texture2D" uid="uid://l4a4oj4t8yec" path="res://Sprites/cube.png" id="8_rlyhm"]
 [ext_resource type="Texture2D" uid="uid://btq0asoiaud1p" path="res://Sprites/Pieces/wn.png" id="9_v7bld"]
 [ext_resource type="Script" path="res://Scripts/zombie_wave_spawner.gd" id="12_7dnc4"]
+[ext_resource type="Texture2D" uid="uid://3v4ibvux0n0w" path="res://Sprites/reload.png" id="12_s43k6"]
+[ext_resource type="Script" path="res://Scripts/reload.gd" id="13_h56p8"]
+[ext_resource type="Script" path="res://Scripts/game_over_area.gd" id="14_tm30i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmfpa"]
 size = Vector2(260, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rdxl"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkv0l"]
+size = Vector2(433.777, 4615.11)
 
 [node name="Main" type="Node2D"]
 
@@ -106,7 +115,31 @@ texture = ExtResource("8_rlyhm")
 scale = Vector2(2, 2)
 script = ExtResource("12_7dnc4")
 
+[node name="Reload" type="Sprite2D" parent="."]
+position = Vector2(-536, 290)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("12_s43k6")
+script = ExtResource("13_h56p8")
+
+[node name="Area2D" type="Area2D" parent="Reload"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reload/Area2D"]
+shape = SubResource("RectangleShape2D_6rdxl")
+
+[node name="GameOverArea" type="Node2D" parent="."]
+position = Vector2(-600, 0)
+scale = Vector2(0.140625, 0.140625)
+script = ExtResource("14_tm30i")
+
+[node name="Area2D" type="Area2D" parent="GameOverArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea/Area2D"]
+position = Vector2(-110.223, -17.7778)
+shape = SubResource("RectangleShape2D_wkv0l")
+
 [connection signal="input_event" from="PromoteUIHandler/Wq/Area2D" to="PromoteUIHandler" method="QueenInputEvent"]
 [connection signal="input_event" from="PromoteUIHandler/Wr/Area2D" to="PromoteUIHandler" method="RookInputEvent"]
 [connection signal="input_event" from="PromoteUIHandler/Wb/Area2D" to="PromoteUIHandler" method="BishopInputEvent"]
 [connection signal="input_event" from="PromoteUIHandler/Wn/Area2D" to="PromoteUIHandler" method="KnightInputEvent"]
+[connection signal="input_event" from="Reload/Area2D" to="Reload" method="_on_area_2d_input_event"]
+[connection signal="area_entered" from="GameOverArea/Area2D" to="GameOverArea" method="_on_area_2d_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://h2scap1qo4n4"]
+[gd_scene load_steps=22 format=3 uid="uid://h2scap1qo4n4"]
 
 [ext_resource type="PackedScene" uid="uid://8e0tmtvyvj78" path="res://Scenes/BoardHolder.tscn" id="1_sy3iw"]
 [ext_resource type="Script" path="res://Scripts/board_colorizer.gd" id="2_t3gmd"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://3v4ibvux0n0w" path="res://Sprites/reload.png" id="12_s43k6"]
 [ext_resource type="Script" path="res://Scripts/reload.gd" id="13_h56p8"]
 [ext_resource type="Script" path="res://Scripts/game_over_area.gd" id="14_tm30i"]
+[ext_resource type="Texture2D" uid="uid://dd0mattlfruv1" path="res://Sprites/pause.png" id="15_5km0r"]
+[ext_resource type="Script" path="res://Scripts/pause.gd" id="16_aa2fe"]
+[ext_resource type="Script" path="res://Scripts/BackToGameRestart.gd" id="17_oic7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmfpa"]
 size = Vector2(260, 260)
@@ -23,6 +26,9 @@ size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkv0l"]
 size = Vector2(433.777, 4615.11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acv6n"]
+size = Vector2(1202.67, 205.333)
 
 [node name="Main" type="Node2D"]
 
@@ -137,9 +143,51 @@ script = ExtResource("14_tm30i")
 position = Vector2(-110.223, -17.7778)
 shape = SubResource("RectangleShape2D_wkv0l")
 
+[node name="Pause" type="Sprite2D" parent="."]
+process_mode = 3
+position = Vector2(-471, 290)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("15_5km0r")
+script = ExtResource("16_aa2fe")
+
+[node name="Area2D" type="Area2D" parent="Pause"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pause/Area2D"]
+shape = SubResource("RectangleShape2D_6rdxl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pause"]
+visible = false
+modulate = Color(0.68515, 0.6603, 0.71, 0.87451)
+position = Vector2(1261.33, -776)
+scale = Vector2(166.333, 90)
+texture = ExtResource("8_rlyhm")
+
+[node name="Reload" type="Label" parent="Pause"]
+visible = false
+offset_left = 632.0
+offset_top = -1018.67
+offset_right = 4019.0
+offset_bottom = 282.333
+scale = Vector2(0.375, 0.375)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 626
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_oic7e")
+
+[node name="Area2D" type="Area2D" parent="Pause/Reload"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pause/Reload/Area2D"]
+position = Vector2(577.333, 132)
+shape = SubResource("RectangleShape2D_acv6n")
+debug_color = Color(0, 0.595, 0.7, 0)
+
 [connection signal="input_event" from="PromoteUIHandler/Wq/Area2D" to="PromoteUIHandler" method="QueenInputEvent"]
 [connection signal="input_event" from="PromoteUIHandler/Wr/Area2D" to="PromoteUIHandler" method="RookInputEvent"]
 [connection signal="input_event" from="PromoteUIHandler/Wb/Area2D" to="PromoteUIHandler" method="BishopInputEvent"]
 [connection signal="input_event" from="PromoteUIHandler/Wn/Area2D" to="PromoteUIHandler" method="KnightInputEvent"]
 [connection signal="input_event" from="Reload/Area2D" to="Reload" method="_on_area_2d_input_event"]
 [connection signal="area_entered" from="GameOverArea/Area2D" to="GameOverArea" method="_on_area_2d_area_entered"]
+[connection signal="input_event" from="Pause/Area2D" to="Pause" method="_on_area_2d_input_event"]
+[connection signal="input_event" from="Pause/Reload/Area2D" to="Pause/Reload" method="_on_area_2d_input_event"]

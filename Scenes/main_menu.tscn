@@ -1,23 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwrytvsov854w"]
+[gd_scene load_steps=4 format=3 uid="uid://dl3yg3f7blw7c"]
 
-[ext_resource type="Script" path="res://Scripts/BackToGameRestart.gd" id="1_g651s"]
-[ext_resource type="Texture2D" uid="uid://l4a4oj4t8yec" path="res://Sprites/cube.png" id="2_fk4r0"]
+[ext_resource type="Texture2D" uid="uid://l4a4oj4t8yec" path="res://Sprites/cube.png" id="1_qvtqi"]
+[ext_resource type="Script" path="res://Scripts/BackToGameRestart.gd" id="2_ewaap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_doa0m"]
 size = Vector2(1202.67, 205.333)
 
-[node name="GameOver" type="Node2D"]
+[node name="MainMenu" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Text" type="Label" parent="."]
-offset_left = -309.0
-offset_top = -298.0
-offset_right = 319.0
-offset_bottom = -47.0
+offset_left = -383.0
+offset_top = -319.0
+offset_right = 388.0
+offset_bottom = -68.0
 theme_override_font_sizes/font_size = 91
-text = "Game Over!
-:("
+text = "Chess vs Zombies"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -25,7 +24,7 @@ vertical_alignment = 1
 modulate = Color(0.93, 0.4557, 0.684945, 0.647059)
 position = Vector2(-1, 75)
 scale = Vector2(27.75, 3.75)
-texture = ExtResource("2_fk4r0")
+texture = ExtResource("1_qvtqi")
 
 [node name="Reload" type="Label" parent="."]
 offset_left = -218.5
@@ -34,8 +33,10 @@ offset_right = 942.5
 offset_bottom = 268.0
 scale = Vector2(0.375, 0.375)
 theme_override_font_sizes/font_size = 176
-text = "Restart Game"
-script = ExtResource("1_g651s")
+text = "Start Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_ewaap")
 
 [node name="Area2D" type="Area2D" parent="Reload"]
 
